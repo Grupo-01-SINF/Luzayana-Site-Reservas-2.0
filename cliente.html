@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+    <meta charset="UTF-8">
+    <title>Minha Conta | Luzayana</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body onload="carregarPerfilCliente()">
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <span class="logo-texto">Área do Cliente</span>
+            </div>
+            <button onclick="sair()" class="btn-dourado" style="padding: 5px 20px; font-size: 14px;">Sair</button>
+        </div>
+    </header>
+
+    <main class="espaco-topo secao-texto">
+        <h1>Olá, <span id="nome-cliente" style="color: #d4af37;">...</span></h1>
+        <p>Gerencie suas reservas e veja seu histórico aqui.</p>
+
+        <div class="grid-servicos" style="margin-top: 40px; text-align: left;">
+            
+            <div class="cartao-servico">
+                <h3 style="color: #d4af37; margin-bottom: 20px;">Nova Reserva</h3>
+                <form id="form-reserva" onsubmit="novaReserva(event)">
+                    <label>Data:</label>
+                    <input type="date" id="data" class="input-moderno" required>
+                    
+                    <label>Hora:</label>
+                    <input type="time" id="hora" class="input-moderno" required>
+                    
+                    <label>Número de Pessoas:</label>
+                    <input type="number" id="pessoas" class="input-moderno" min="1" max="20" required>
+                    
+                    <button type="submit" class="btn-dourado" style="width: 100%;">Solicitar Reserva</button>
+                </form>
+            </div>
+
+            <div class="cartao-servico" style="grid-column: span 2;">
+                <h3 style="color: #d4af37;">Minhas Reservas</h3>
+                <div class="tabela-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Hora</th>
+                                <th>Pessoas</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-minhas-reservas">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="sistema.js"></script>
+</body>
+</html>
