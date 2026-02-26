@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+    <meta charset="UTF-8">
+    <title>Administração | Luzayana</title>
+   <!-- <link rel="stylesheet" href="estilo.css">
+   -->
+   <style>
+     /* --- Reset Global --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333333;
+    overflow-x: hidden;
+}
+
+/* --- Barra de Navegação --- */
+header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 0 5%;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.logo-texto {
+    font-size: 22px;
+    font-weight: bold;
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- Layout Principal --- */
+.espaco-topo {
+    margin-top: 100px;
+    padding-bottom: 50px;
+}
+
+.secao-texto {
+    text-align: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Grid de Dashboard (Admin e Cliente) --- */
+.grid-servicos {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+/* No PC: 3 colunas para Admin, 2 para Cliente (ajustado via inline ou classes) */
+@media (min-width: 851px) {
+    .grid-servicos {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+.cartao-servico {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    transition: transform 0.3s;
+}
+
+/* --- Botões e Inputs --- */
+.btn-dourado {
+    background-color: #d4af37;
+    color: #ffffff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.btn-dourado:hover {
+    background-color: #b59020;
+    transform: translateY(-2px);
+}
+
+.confirmacao {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-aceitar, .btn-rejeitar {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    flex: 1;
+}
+
+.btn-aceitar { background-color: #27ae60; }
+.btn-rejeitar { background-color: #e74c3c; }
+
+/* --- Tabelas (Modo Desktop) --- */
+.tabela-container {
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #d4af37;
+    color: white;
+    padding: 15px;
+    text-align: left;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+/* --- RESPONSIVIDADE (MOBILE) --- */
+@media (max-width: 850px) {
+    .grid-servicos {
+        grid-template-columns: 1fr !important; /* Força 1 coluna no mobile */
+    }
+
+    .tabela-container {
+        background: transparent;
+        box-shadow: none;
+    }
+
+    /* Transforma a tabela em Cards */
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100% !important;
+    }
+
+    thead { display: none; } /* Esconde cabeçalho */
+
+    tr {
+        background: #fff;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        border: 1px solid #d4af37;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    td {
+        text-align: right;
+        padding: 12px 15px;
+        position: relative;
+        border-bottom: 1px solid #f4f4f4;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        min-height: 50px;
+    }
+
+    /* Coluna de ações não deve ter borda embaixo */
+    td:last-child { border-bottom: none; }
+
+    /* Rótulos dinâmicos */
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: 45%;
+        font-weight: bold;
+        text-align: left;
+        color: #d4af37;
+    }
+
+    /* Ajuste específico para a célula de botões no Admin */
+    td.Confirmacao, td[data-label="Confirmar"] {
+        flex-direction: column;
+        height: auto;
+        padding-top: 15px;
+    }
+
+    .confirmacao {
+        width: 100%;
+        margin-top: 5px;
+    }
+}
+
+   </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body onload="carregarPainelAdmin()">
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <span class="logo-texto">PAINEL ADMIN</span>
+            </div>
+            <button onclick="sair()" class="btn-dourado" style="padding: 5px 20px;">Sair</button>
+        </div>
+    </header>
+
+    <main class="espaco-topo secao-texto" id="conteudo-relatorio">
+        <h1>Dashboard de Gestão</h1>
+        <p>Visão geral do sistema de reservas.</p>
+
+        <div class="grid-servicos" style="margin-top: 30px; grid-template-columns: repeat(3, 1fr); padding-bottom: 20px;">
+            <div class="cartao-servico" style="text-align: center;">
+                <h3>Total de Reservas</h3>
+                <p id="total-reservas" style="font-size: 3rem; font-weight: bold; color: #d4af37;">0</p>
+            </div>
+            <div class="cartao-servico" style="text-align: center;">
+                <h3>Mesas Livres</h3>
+                <p style="font-size: 3rem; font-weight: bold; color: #333;">12</p>
+            </div>
+            <div class="cartao-servico" style="text-align: center; display: flex; align-items: center; justify-content: center;">
+                <button onclick="baixarRelatorio()" class="btn-dourado">
+                    📥 Baixar Relatório (PDF)
+                </button>
+            </div>
+        </div>
+
+        <div style="margin-left: 0%;">
+            <h3 style="text-align: left; color: #d4af37;">Reservas Recentes</h3>
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="td-normal">ID</th>
+                            <th class="td-normal">Cliente</th>
+                            <th class="td-normal">Data</th>
+                            <th class="td-normal">Hora</th>
+                            <th class="td-normal">Pessoas</th>
+                            <th class="td-normal">Status</th>
+                            <th class="Confirmacao" style="width: 200px;">Confirmar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela-todas-reservas">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="sistema.js"></script>
+</body>
+</html>

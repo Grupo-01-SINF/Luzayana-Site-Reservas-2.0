@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+    <meta charset="UTF-8">
+    <title>Minha Conta | Luzayana</title>
+    <!--<link rel="stylesheet" href="estilo.css">
+    -->
+    <style>/* --- Reset Global --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333333;
+    overflow-x: hidden;
+}
+
+/* --- Barra de Navegação (Menu) --- */
+header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 0 5%;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.logo-texto {
+    font-size: 24px;
+    font-weight: bold;
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- Layout Principal --- */
+.espaco-topo {
+    margin-top: 100px;
+    padding-bottom: 50px;
+}
+
+.container-central {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.secao-texto {
+    text-align: center;
+}
+
+/* --- Grid de Dashboard --- */
+.grid-servicos {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Coluna do form menor, da tabela maior */
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.cartao-servico {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border: 1px solid #d4af37;
+    height: fit-content;
+}
+
+/* --- Formulários --- */
+.input-moderno {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    outline: none;
+    font-size: 16px;
+}
+
+.input-moderno:focus {
+    border-color: #d4af37;
+    background-color: #ffffff;
+}
+
+.btn-dourado {
+    background-color: #d4af37;
+    color: #ffffff;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn-dourado:hover {
+    background-color: #b59020;
+    transform: scale(1.02);
+}
+
+/* --- Tabelas (Modo PC) --- */
+.tabela-container {
+    width: 100%;
+    background: white;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #d4af37;
+    color: white;
+    padding: 15px;
+    text-align: left;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.status-pendente { color: #f39c12; font-weight: bold; }
+.status-confirmado { color: #27ae60; font-weight: bold; }
+
+/* --- RESPONSIVIDADE (MOBILE) --- */
+@media (max-width: 850px) {
+    .grid-servicos {
+        grid-template-columns: 1fr; /* Empilha tudo em uma coluna */
+        padding: 0;
+    }
+
+    .cartao-servico {
+        width: 100% !important;
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    /* Transformação da Tabela em Cards Individuais */
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+
+    thead tr {
+        display: none; /* Esconde o cabeçalho original */
+    }
+
+    tr {
+        margin-bottom: 15px;
+        border: 1px solid #d4af37;
+        border-radius: 10px;
+        background: #fff;
+        overflow: hidden;
+    }
+
+    td {
+        text-align: right;
+        padding: 12px 15px;
+        position: relative;
+        border-bottom: 1px solid #f4f4f4;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    td:last-child {
+        border-bottom: none;
+    }
+
+    /* Inserção dos rótulos (Data, Hora, etc) à esquerda */
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: 45%;
+        font-weight: bold;
+        text-align: left;
+        color: #d4af37;
+        font-size: 14px;
+    }
+
+    /* Ajuste para o título e subtítulo */
+    h1 { font-size: 24px; }
+    .logo-texto { font-size: 18px; }
+}
+    </style>
+</head>
+<body onload="carregarPerfilCliente()">
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <span class="logo-texto">Área do Cliente</span>
+            </div>
+            <button onclick="sair()" class="btn-dourado" style="padding: 5px 20px; font-size: 14px;">Sair</button>
+        </div>
+    </header>
+
+    <main class="espaco-topo secao-texto">
+        <div class="container-central">
+            <h1>Olá, <span id="nome-cliente" style="color: #d4af37;">...</span></h1>
+            <p>Gerencie suas reservas e veja seu histórico aqui.</p>
+
+            <div class="grid-dashboard">
+                <div class="cartao-servico form-reserva-container">
+                    <h3 style="color: #d4af37; margin-bottom: 20px;">Nova Reserva</h3>
+                    <form id="form-reserva" onsubmit="novaReserva(event)">
+                        <label>Data:</label>
+                        <input type="date" id="data" class="input-moderno" required>
+                        
+                        <label>Hora:</label>
+                        <input type="time" id="hora" class="input-moderno" required>
+                        
+                        <label>Número de Pessoas:</label>
+                        <input type="number" id="pessoas" class="input-moderno" min="1" max="20" required>
+                        
+                        <button type="submit" class="btn-dourado" style="width: 100%;">Solicitar Reserva</button>
+                    </form>
+                </div>
+
+                <div class="cartao-servico lista-reservas-container">
+                    <h3 style="color: #d4af37; margin-bottom: 20px;">Minhas Reservas</h3>
+                    <div class="tabela-responsiva">
+                        <table class="tabela-estilizada">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Hora</th>
+                                    <th>Pessoas</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabela-minhas-reservas">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="sistema.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,339 @@
+/* --- Reset Global --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #ffffff; /* Branco puro */
+    color: #333333;
+    overflow-x: hidden;
+}
+
+/* --- Barra de Navegação (Menu) --- */
+header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 0 5%;
+}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    position: relative;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 2;
+}
+
+.logo-img {
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #d4af37; /* Dourado */
+}
+
+.logo-texto {
+    font-size: 24px;
+    font-weight: bold;
+    color: #d4af37; /* Dourado */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- Menu PC e Efeito "Segue o Rato" --- */
+.menu-pc {
+    margin-top: 45px;
+    display: flex;
+    position: relative;
+    height: 100%;
+    align-items: center;
+}
+
+.menu-pc a {
+    text-decoration: none;
+    height: 100%;
+    /*margin: top 70px;*/
+    color: #333333;
+    font-weight: 600;
+    padding: 10px;
+    margin: 0 5px;
+    position: relative;
+}
+
+.menu-pc a:hover {
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.2s, background 0.3s;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* O "fantasma" laranja que segue o rato */
+.marcador-menu {
+    position: absolute;
+    height: 3px;
+    margin-top: 100%;
+    background-color: #ca9a32; /* Dourado/Laranja do tema */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    opacity: 0;
+    z-index: 1;
+    bottom: 20px; /* Ajuste vertical */
+}
+
+/* --- Menu Mobile (Hambúrguer) --- */
+.menu-mobile-btn {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #d4af37;
+}
+
+/* --- Layout e Secções --- */
+.espaco-topo {
+    margin-top: 80px;
+}
+
+.hero-banner {
+    background-image: linear-gradient(#ffef97ee,#ffb74aee), url('../logo.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color:black;
+    padding: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-banner h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-banner h1 span {
+    color: #d4af37;
+}
+
+.hero-banner p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin-bottom: 30px;
+}
+
+.btn-dourado {
+    background-color: #d4af37;
+    color: #ffffff;
+    padding: 15px 40px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: transform 0.2s, background 0.3s;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn-dourado:hover {
+    background-color: #b59020;
+    transform: scale(1.05);
+}
+.confirmacao{
+    display: flex;
+    width: 200px;
+
+}
+.btn-aceitar{
+    width: 45%;
+    height:40px;
+    border: none;
+    min-width:70px;
+    background-color: rgb(50, 214, 50);
+    color: #f4f4f4;
+}
+.btn-rejeitar{
+    width: 45%;
+    min-width:70px;
+    hei:40px;
+    border: none;
+    background-color: rgb(201, 60, 42);
+    color: #f4f4f4;
+}
+
+/* --- Conteúdo Rico (Texto) --- */
+.secao-texto {
+    text-align: center;
+}
+.p{
+    padding: 20px;
+}
+
+.secao-texto h2 {
+    font-size: 2.5rem;
+    color: #d4af37;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.secao-texto h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #d4af37;
+    margin: 10px auto 0;
+}
+
+.texto-longo {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+/* --- Grid de Informações --- */
+.grid-servicos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 0 10% 80px;
+}
+
+.cartao-servico {
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border: 1px solid #d4af37;
+    transition: transform 0.3s;
+}
+
+.cartao-servico:hover {
+    transform: translateY(-10px);
+}
+
+/* --- Formulários e Login --- */
+.container-login {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4;
+}
+
+.box-login {
+    background: #ffffff;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.input-moderno {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    outline: none;
+}
+
+.input-moderno:focus {
+    border-color: #d4af37;
+    background-color: #ffffff;
+}
+
+/* --- Tabelas (Dashboard) --- */
+td,th{
+    width:250px;
+    text-align: center;
+}
+.tabela-container {
+    overflow-x: auto;
+    overflow-y: auto;
+    width: 100vw;
+    margin-top: 20px;
+    margin-left: 0%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    padding: 20px;
+}
+.td-normal{
+    width:14,28%;
+}
+table {
+    min-width: 1000px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background-color: #d4af37;
+    color: white;
+}
+
+.status-pendente { color: orange; font-weight: bold; }
+.status-confirmado { color: green; font-weight: bold; }
+.rodape {
+    text-align: center;
+    padding: 2rem;
+    background: #333;
+    color: #888;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .menu-pc {
+        display: none; /* Esconde menu PC */
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        padding: 20px 0;
+    }
+
+    .menu-pc.ativo {
+        display: flex; /* Mostra quando ativo via JS */
+    }
+
+    .menu-mobile-btn {
+        display:block; /* Mostra hambúrguer */
+    }
+
+    .hero-banner h1 { font-size: 2.5rem; }
+    
+    .marcador-menu { display: none; } /* Desativa animação no mobile */
+}
+/*.marcador-menu { display: none; }*/
